@@ -19,6 +19,28 @@ Install from "scratch", RPiOS64bit Interactive Automatic Installer
 
 Manual installation
 ---
+
+DO THIS FIRST
+To install pimox on top of 5.15 kernel, you need to install zfs 2.1
+To achieve that, you need
+
+first to install linux-headers matching your kernel
+then to configure apt to use bullseye-backports repo as documented here https://openzfs.github.io/openzfs-docs/Getting%20Started/Debian/index.html#installation
+apt install zfs-dkms/bullseye-backport
+# apt install zfsutils-linux/bullseye-backport
+
+apt install zfs-zed/bullseye-backport
+Result can be checked
+
+apt list | grep zfs | grep installed
+libzfs4linux/bullseye-backports,now 2.1.5-1bpo11+1 arm64 [installed,automatic]
+zfs-dkms/bullseye-backports,now 2.1.5-1bpo11+1 all [installed]
+zfs-zed/bullseye-backports,now 2.1.5-1bpo11+1 arm64 [installed]
+zfsutils-linux/bullseye-backports,now 2.1.5-1bpo11+1 arm64 [installed]
+
+Then there is another similar trick to solve with ceph-dkms dependecy.
+this package needs to be compiled as root on your system https://github.com/pimox/ceph-dkms
+
 Prechecks
 
 1. Pre-installed Debian __Bullseye__ based  ___64-bit___ OS (not 32bit)
